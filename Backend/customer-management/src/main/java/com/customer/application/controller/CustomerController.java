@@ -16,35 +16,35 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.customer.application.exception.ResourceNotFoundException;
-import com.customer.application.model.Customer;
+import com.customer.application.entity.Customer;
 import com.customer.application.repository.CustomerRepository;
 
 @CrossOrigin
 @RestController
 @RequestMapping("/api/v1/")
-public class customerController {
+public class CustomerController {
 
 	@Autowired
 	private CustomerRepository customerRepository;
 
-	@GetMapping("/customer")
+	@GetMapping(value = "/customer")
 	public List<Customer> getAllCustomers(){
 		return customerRepository.findAll();
 	}
 	
-	@PostMapping("/customer")	
+	@PostMapping(value = "/customer")
 	public Customer createCustomer(@RequestBody Customer customer) {
 		return customerRepository.save(customer);
 	}
 
-	@GetMapping("/customer/{id}")
+	@GetMapping(value = "/customer/{id}")
 	public ResponseEntity<Customer> getCustomerById(@PathVariable Long id) {
 		Customer customer=customerRepository.findById(id)
 				.orElseThrow(() -> new ResourceNotFoundException("Employee not exist:" +id));
 		return ResponseEntity.ok(customer);
 	}
 
-	@DeleteMapping("/customer/{id}")	
+	@DeleteMapping(value = "/customer/{id}")
 	public ResponseEntity<Map<String,Boolean>> deleteCustomer(@PathVariable Long id){
 		Customer customer=customerRepository.findById(id)
 				.orElseThrow(() -> new ResourceNotFoundException("Employee not exist:" +id));
