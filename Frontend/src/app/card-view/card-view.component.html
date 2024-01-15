@@ -1,0 +1,17 @@
+<br><br>
+<div id="card1" class="danger" *ngFor="let customer of customers">
+  <span class="label info" *ngIf="customer.gender=='Male'">
+    <img src="assets/ted.jpg" width="100" height="100">
+  </span>
+  <span *ngIf="customer.gender=='Female'">
+    <img src="assets/enrita.png" width="100" height="100">
+  </span>
+  
+  <p><b>{{customer.firstname}} {{customer.lastname}}</b><br>
+  
+  
+  {{customer.address}}<br> {{customer.city}}</p>
+  
+</div>
+
+
