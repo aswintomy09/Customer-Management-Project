@@ -38,13 +38,17 @@
     <div class="col-md ">
     <div class="form-group">
         
-        <select class="form-select" id="state" [(ngModel)] = "customer.state" name="state">>
+        <select class="form-select" id="state" [(ngModel)] = "customer.state" name="state">
           <option selected>Andhra Pradesh</option>
-          <option value="1">Karnataka</option>
-          <option value="2">Kerala</option>
-          <option value="3">Tamil Nadu</option>
-          <option value="4">Maharashtra</option>
-          <option value="5">Gujarat</option>
+          <option value="Karnataka">Karnataka</option>
+          <option value="Kerala">Kerala</option>
+          <option value="Tamil Nadu">Tamil Nadu</option>
+          <option value="Maharashtra">Maharashtra</option>
+          <option value="Gujarat">Gujarat</option>
+          <option value="Punjab">Punjab</option>
+          <option value="Uttar Pradesh">Uttar Pradesh</option>
+          <option value="Rajasthan">Rajasthan</option>
+          <option value="West Bengal">West Bengal</option>
         </select>
     </div>   
        
@@ -59,7 +63,7 @@
 
     <div class="form-group">
         <label>Order Total</label>
-        <input type="text" class="form-control" id="ordertotal"
+        <input type="number" class="form-control" id="ordertotal"
             [(ngModel)] = "customer.ordertotal" name="ordertotal">
     </div><br>
     <button class="btn btn-success" type="submit">Submit</button>&nbsp;&nbsp;&nbsp;&nbsp;

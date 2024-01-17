@@ -1,7 +1,6 @@
 package com.customer.application.entity;
 
-import lombok.Builder;
-import lombok.Data;
+import lombok.*;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -10,8 +9,9 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
-@Data
-@Builder
+@AllArgsConstructor
+@Getter
+@Setter
 @Entity
 @Table(name = "customer")
 

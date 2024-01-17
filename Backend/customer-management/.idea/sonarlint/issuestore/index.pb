@@ -15,8 +15,6 @@ X
 mvnw.cmd,1\f\1f1763f358c257ea3515417352b82b0165647ad1
 z
 Jbin/target/classes/META-INF/maven/com.customer/customer-management/pom.xml,9\1\9193e1deb7b2737bed66867cb363cd087766a43d
-j
-:src/main/java/com/customer/application/model/Customer.java,c\1\c1dccc718afb42ef14d6c44fe0e1aef571f505dd
 ;
 bin/HELP.md,5\9\598278223d09cdc765c0ce18fd5c5110e4c8af32
 y
