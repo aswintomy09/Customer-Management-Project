@@ -4,7 +4,10 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import com.customer.application.model.CustomerModel;
+import com.customer.application.service.CustomerService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -25,32 +28,30 @@ import com.customer.application.repository.CustomerRepository;
 public class CustomerController {
 
 	@Autowired
-	private CustomerRepository customerRepository;
+	private CustomerService customerService;
 
 	@GetMapping(value = "/customer")
 	public List<Customer> getAllCustomers(){
-		return customerRepository.findAll();
+		return customerService.getAllCustomers();
 	}
 	
 	@PostMapping(value = "/customer")
-	public Customer createCustomer(@RequestBody Customer customer) {
-		return customerRepository.save(customer);
+	public ResponseEntity<Customer> createCustomer(@RequestBody CustomerModel customerModel) {
+		Customer savedCustomer = customerService.createCustomer(customerModel);
+
+		return new ResponseEntity<>(savedCustomer, HttpStatus.CREATED);
 	}
 
 	@GetMapping(value = "/customer/{id}")
-	public ResponseEntity<Customer> getCustomerById(@PathVariable Long id) {
-		Customer customer=customerRepository.findById(id)
-				.orElseThrow(() -> new ResourceNotFoundException("Employee not exist:" +id));
-		return ResponseEntity.ok(customer);
+	public Customer getCustomerById(@PathVariable Long id) {
+        return customerService.getCustomerById(id);
 	}
 
 	@DeleteMapping(value = "/customer/{id}")
-	public ResponseEntity<Map<String,Boolean>> deleteCustomer(@PathVariable Long id){
-		Customer customer=customerRepository.findById(id)
-				.orElseThrow(() -> new ResourceNotFoundException("Employee not exist:" +id));
-		customerRepository.delete(customer);
-		Map<String,Boolean> response= new HashMap<>();
-		response.put("deleted",Boolean.TRUE);
+	public ResponseEntity<Map<String,Customer>> deleteCustomer(@PathVariable Long id){
+		Customer customer = customerService.deleteCustomer(id);
+		Map<String,Customer> response= new HashMap<>();
+		response.put("Data deleted successfully",customer);
 		return ResponseEntity.ok(response);
 
 	}

@@ -10,8 +10,10 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @AllArgsConstructor
+@NoArgsConstructor
 @Getter
 @Setter
+@Builder
 @Entity
 @Table(name = "customer")
 
@@ -40,7 +42,7 @@ public class Customer {
 	private String orders;
 	
 	@Column(name="Ordertotal")
-	private int orderTotal;
+	private Integer orderTotal;
 
 }
 

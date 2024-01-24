@@ -19,5 +19,5 @@ public class CustomerModel {
 
     private String orders;
 
-    private int orderTotal;
+    private Integer orderTotal;
 }
