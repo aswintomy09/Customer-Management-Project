@@ -1,12 +1,10 @@
-h2{
-    margin-left: 620px;
+
+*{
+    margin: 0px;
 }
-img{
-    margin-left: 600px;
+
+.logincard{
+    margin-left: 495px;
+    margin-top: 20px;
 }
-div{
-    margin-left: 550px;
-}
-button{
-    margin-left: 650px;
-}
+

@@ -11,11 +11,8 @@
       <tbody border="1">
       <tr *ngFor="let customer of customers">
         
-        <td *ngIf="customer.gender=='Male'">
+        <td>
           <img src="assets/ted.jpg" width="50" height="50">
-        </td>
-        <td *ngIf="customer.gender=='Female'">
-          <img src="assets/enrita.png" width="50" height="50">
         </td>
         <td>{{customer.firstname}} {{customer.lastname}}</td>
         <td>{{customer.orders}}</td>
