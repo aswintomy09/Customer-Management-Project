@@ -176,3 +176,13 @@ o
 ?src/main/java/com/customer/application/constants/Constants.java,4\5\45022b8a8ddc4d4ddc2b2ad991c5fcc333ec6822
 w
 Gsrc/main/java/com/customer/application/exception/CustomerException.java,c\9\c9036fa7d41fc9e6b98c29d07723439c4719ecf8
+s
+Csrc/main/java/com/customer/application/security/SecurityConfig.java,b\4\b4570baeb40731144daa7a11b4f0831afe74be80
+j
+:src/main/java/com/customer/application/security/Roles.java,3\b\3bc9d56b95cfb32c2fbb3074f53e5ec7964f2b03
+Å
+Q.idea/sonarlint/securityhotspotstore/3/b/3bc9d56b95cfb32c2fbb3074f53e5ec7964f2b03,2\9\29af6ab733c0e08fb98237ff9682d83b722aa229
+Å
+Q.idea/sonarlint/securityhotspotstore/b/4/b4570baeb40731144daa7a11b4f0831afe74be80,a\4\a42dea1cf9a43310eb1b22ffcf5b44a738ddba08
+w
+G.idea/sonarlint/issuestore/3/b/3bc9d56b95cfb32c2fbb3074f53e5ec7964f2b03,3\f\3fa8116df4801079f2231a6b435a40cd508cb560
