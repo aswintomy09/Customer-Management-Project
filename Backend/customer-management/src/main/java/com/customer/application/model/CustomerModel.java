@@ -1,8 +1,12 @@
 package com.customer.application.model;
 
-import lombok.Builder;
-import lombok.Data;
+import com.customer.application.entity.Order;
+import lombok.*;
 
+import java.util.List;
+
+@NoArgsConstructor
+@AllArgsConstructor
 @Data
 @Builder
 public class CustomerModel {
@@ -17,7 +21,7 @@ public class CustomerModel {
 
     private String state;
 
-    private String orders;
+    private List<Order> orders;
 
     private Integer orderTotal;
 }

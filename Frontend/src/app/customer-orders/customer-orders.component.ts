@@ -3,6 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { Customer } from '../customer';
 import { CustomerService } from '../customer.service';
 import { Route } from '@angular/router';
+import { Order } from '../order';
 
 @Component({
   selector: 'app-customer-orders',
@@ -13,6 +14,7 @@ export class CustomerOrdersComponent implements OnInit {
 
   id!:number
   customer!: Customer
+  orders!: Order
 
   constructor(private route: ActivatedRoute, private customerService: CustomerService) { }
 

@@ -2,12 +2,8 @@ package com.customer.application.entity;
 
 import lombok.*;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
+import java.util.List;
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -20,28 +16,28 @@ import javax.persistence.Table;
 public class Customer {
 	
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private long id;
 	
-	@Column(name="first_name")
+	@Column(name="FirstName")
 	private String firstname;
 	
-	@Column(name="last_name")
+	@Column(name="LastName")
 	private String lastname;
 	
-	@Column(name="address")
+	@Column(name="Address")
 	private String address;
 	
-	@Column(name="city")
+	@Column(name="City")
 	private String city;
 	
-	@Column(name="state")
+	@Column(name="State")
 	private String state;
 	
-	@Column(name="orders")
-	private String orders;
+	@OneToMany(mappedBy = "customer", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	private List<Order> orders;
 	
-	@Column(name="Ordertotal")
+	@Column(name="OrderTotal")
 	private Integer orderTotal;
 
 }

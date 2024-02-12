@@ -25,7 +25,7 @@ import com.customer.application.repository.CustomerRepository;
 
 import static com.customer.application.constants.Constants.URL;
 
-@CrossOrigin
+@CrossOrigin(origins = "*")
 @Slf4j
 @RestController
 @RequestMapping(URL)
@@ -36,17 +36,19 @@ public class CustomerController {
 
 	@GetMapping(value = "/customer")
 	public List<Customer> getAllCustomers(){
+
+		final String METHOD_NAME = this.getClass().getName() + " :: getAllCustomers ::";
+		log.info(METHOD_NAME + "calling getAllCustomers" +
+				" method ");
 		return customerService.getAllCustomers();
 	}
 	
 	@PostMapping(value = "/customer")
 	public ResponseEntity<Customer> createCustomer(@RequestBody CustomerModel customerModel) {
 		final String METHOD_NAME = this.getClass().getName() + " :: createCustomer ::";
-
 		log.info(METHOD_NAME + "calling createCustomer" +
 				" method with " + "customerModel :: {} ", customerModel);
 		Customer savedCustomer = customerService.createCustomer(customerModel);
-
 		return new ResponseEntity<>(savedCustomer, HttpStatus.CREATED);
 	}
 
@@ -60,8 +62,7 @@ public class CustomerController {
 	@DeleteMapping(value = "/customer/{id}")
 	public ResponseEntity<Map<String,Customer>> deleteCustomer(@PathVariable Long id){
 		final String METHOD_NAME = this.getClass().getName() + " :: deleteCustomer ::";
-		log.info(METHOD_NAME + "calling deleteCustomer" +
-				" method with " + "id :: {} ", id);
+		log.info(METHOD_NAME + "calling deleteCustomer" + " method with " + "id :: {} ", id);
 		Customer customer = customerService.deleteCustomer(id);
 		Map<String,Customer> response= new HashMap<>();
 		response.put("Data deleted successfully",customer);

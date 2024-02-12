@@ -1,3 +1,5 @@
+import { Order } from "./order";
+
 export class Customer {
     id!: number;
     firstname!: String;
@@ -6,7 +8,7 @@ export class Customer {
     address!: String;
     city!: String;
     state!: String;
-    orders!: String;
-    ordertotal!: number;
+    orders!: Order[];
+    orderTotal!: number;
 
 }

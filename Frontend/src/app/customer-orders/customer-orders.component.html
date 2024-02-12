@@ -9,10 +9,10 @@
   
   
   <div>
-    <label><b>Orders: </b></label> {{customer.orders}}
+    <label><b>Orders: </b></label> <div *ngFor="let order of customer.orders"> {{order.item}} </div>
   </div>
 
   <div>
-    <label><b>OrderTotal:</b> ₹</label>{{customer.ordertotal}}
+    <label><b>OrderTotal:</b> ₹</label>{{customer.orderTotal}}
   </div>
 </div>
