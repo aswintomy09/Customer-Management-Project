@@ -192,3 +192,15 @@ v
 Fsrc/main/java/com/customer/application/repository/OrderRepository.java,d\7\d7af21ed34be82b9aea407b02890aef7647bffd8
 }
 Msrc/test/java/com/customer/application/controller/CustomerControllerTest.java,9\3\9349960ba28173ded717525b070827499f9e194b
+l
+<src/main/java/com/customer/application/entity/OrderList.java,e\a\eae198c3482f62a975074479bcb621bd45597af9
+v
+Fsrc/main/java/com/customer/application/controller/OrderController.java,8\8\88a32218dff6da795e095ecc12896cf45f9dfb0c
+p
+@src/main/java/com/customer/application/service/OrderService.java,1\1\1170ac73154a7962435c87531dff36a1898cbd66
+t
+Dsrc/main/java/com/customer/application/service/OrderServiceImpl.java,2\b\2b2a5707ec03d16a3555239da321c55b26db1b65
+t
+Dsrc/main/java/com/customer/application/exception/OrderException.java,1\d\1d8b3f414ff5860919d4c4e20da90fe82718cca4
+z
+Jsrc/main/java/com/customer/application/repository/OrderListRepository.java,6\9\69cdac47071c7e8c555a7a03bd51db170491086a

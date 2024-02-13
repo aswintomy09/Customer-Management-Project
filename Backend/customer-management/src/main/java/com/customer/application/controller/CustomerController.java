@@ -19,28 +19,27 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.customer.application.exception.ResourceNotFoundException;
 import com.customer.application.entity.Customer;
-import com.customer.application.repository.CustomerRepository;
 
-import static com.customer.application.constants.Constants.URL;
+import static com.customer.application.constants.Constants.CUSTOMER_URL;
 
 @CrossOrigin(origins = "*")
 @Slf4j
 @RestController
-@RequestMapping(URL)
+@RequestMapping(CUSTOMER_URL)
 public class CustomerController {
 
 	@Autowired
 	private CustomerService customerService;
 
 	@GetMapping(value = "/customer")
-	public List<Customer> getAllCustomers(){
+	public ResponseEntity<List<Customer>> getAllCustomers(){
 
 		final String METHOD_NAME = this.getClass().getName() + " :: getAllCustomers ::";
 		log.info(METHOD_NAME + "calling getAllCustomers" +
 				" method ");
-		return customerService.getAllCustomers();
+		List<Customer> customerList = customerService.getAllCustomers();
+		return new ResponseEntity<>(customerList, HttpStatus.OK);
 	}
 	
 	@PostMapping(value = "/customer")

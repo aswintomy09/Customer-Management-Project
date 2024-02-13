@@ -2,10 +2,13 @@ package com.customer.application.service;
 
 import com.customer.application.entity.Customer;
 import com.customer.application.entity.Order;
+import com.customer.application.entity.OrderList;
 import com.customer.application.exception.CustomerException;
+import com.customer.application.exception.OrderException;
 import com.customer.application.exception.ResourceNotFoundException;
 import com.customer.application.model.CustomerModel;
 import com.customer.application.repository.CustomerRepository;
+import com.customer.application.repository.OrderListRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -21,6 +24,8 @@ public class CustomerServiceImpl implements CustomerService{
 
     @Autowired
     private CustomerRepository customerRepository;
+    @Autowired
+    private OrderListRepository orderListRepository;
 
     public List<Customer> getAllCustomers(){
         final String METHOD_NAME = this.getClass().getName() + " :: getAllCustomers :: ";
@@ -56,11 +61,34 @@ public class CustomerServiceImpl implements CustomerService{
                     .build();
             orderList.forEach(order -> order.setCustomer(customer));
             Customer savedCustomer = customerRepository.save(customer);
+            log.info(METHOD_NAME + "Updating the stock value");
+            this.updateStock(savedCustomer.getOrders());
             log.info(METHOD_NAME + "Customer entity saved and data received");
             return savedCustomer;
+
         }catch (CustomerException e){
             log.info(METHOD_NAME + EXCEPTION_MESSAGE, e.getMessage(), e);
             throw new CustomerException(INTERNAL_SERVER_SAVE_ERROR_MESSAGE);
+        }
+    }
+
+    @Override
+    public void updateStock(List<Order> orders) {
+        final String METHOD_NAME = this.getClass().getName() + " :: updateStock :: ";
+        log.info(METHOD_NAME + "orders :: {} ", orders);
+        try {
+            List<String> orderItems = orders.stream().map(Order::getItem)
+                    .collect(Collectors.toList());
+            List<OrderList> orderList = orderListRepository.findAll();
+            orderList.stream()
+                    .filter(list -> orderItems.contains(list.getItem()))
+                    .forEach(list -> {
+                        list.setStock(list.getStock() - 1);
+                        orderListRepository.save(list);
+                    });
+        }catch (OrderException e){
+            log.info(METHOD_NAME + EXCEPTION_MESSAGE, e.getMessage(), e);
+            throw new OrderException(INTERNAL_SERVER_SAVE_ERROR_MESSAGE);
         }
     }
 
