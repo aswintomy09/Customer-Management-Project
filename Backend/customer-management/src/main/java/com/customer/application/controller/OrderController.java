@@ -1,8 +1,6 @@
 package com.customer.application.controller;
 
-import com.customer.application.entity.Order;
 import com.customer.application.entity.OrderList;
-import com.customer.application.service.CustomerService;
 import com.customer.application.service.OrderService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;

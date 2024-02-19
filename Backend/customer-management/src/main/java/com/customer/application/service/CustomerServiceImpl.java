@@ -81,7 +81,7 @@ public class CustomerServiceImpl implements CustomerService{
                     .collect(Collectors.toList());
             List<OrderList> orderList = orderListRepository.findAll();
             orderList.stream()
-                    .filter(list -> orderItems.contains(list.getItem()))
+                    .filter(list -> orderItems.contains(list.getItem()) && list.getStock() > 0)
                     .forEach(list -> {
                         list.setStock(list.getStock() - 1);
                         orderListRepository.save(list);
