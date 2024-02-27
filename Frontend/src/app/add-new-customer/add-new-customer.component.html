@@ -53,18 +53,22 @@
     </div>   
        
     </div>
-    
+
     <div class="form-group">
+        <label>Orders</label>
+    <mat-form-field appearance="fill">
+        <mat-label>Orders</mat-label>
+        <mat-select [(value)]="customer.orders" multiple>
+            <mat-option *ngFor="let order of orders" [value]="order">{{ order.item }}, ₹{{ order.price }}, Stock: {{ order.stock }}</mat-option>
+        </mat-select>
+    </mat-form-field>
+    </div>
+    
+    <!-- <div class="form-group">
         <label>Orders</label>
         <select class="form-select" id="orders" [(ngModel)]="customer.orders" name="orders" multiple>
             <option *ngFor="let order of orders" [ngValue]="order">{{order.item}}, ₹{{order.price}}, Stock: {{order.stock}}</option>
         </select>
-    </div>
-
-    <!-- <div class="form-group">
-        <label>Order Total</label>
-        <input type="number" class="form-control" id="ordertotal"
-            [(ngModel)] = "customer.orderTotal" name="ordertotal">
     </div> -->
     <br>
     <button class="btn btn-success" type="submit">Submit</button>&nbsp;&nbsp;&nbsp;&nbsp;

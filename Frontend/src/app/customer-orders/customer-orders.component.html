@@ -15,4 +15,7 @@
   <div>
     <label><b>OrderTotal:</b> ₹</label>{{customer.orderTotal}}
   </div>
+  <div>      
+    <button (click)="downloadPdf(customer.id)" class="btn btn-info " style="margin-left: 10px">Download Bill</button>
+  </div>
 </div>

@@ -26,4 +26,14 @@ export class CustomerOrdersComponent implements OnInit {
     });
   }
 
+  downloadPdf(customerId: number): void {
+    this.customerService.getDownloadBill(customerId).subscribe((data: Blob) => {
+      var downloadURL = window.URL.createObjectURL(data);
+      var link = document.createElement('a');
+      link.href = downloadURL;
+      link.download = "invoice.pdf";
+      link.click();
+    });
+  }
+
 }

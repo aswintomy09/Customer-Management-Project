@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -17,6 +18,8 @@ import { HttpClientModule } from '@angular/common/http';
 import { CustomerService } from './customer.service';
 import { AddNewCustomerComponent } from './add-new-customer/add-new-customer.component';
 import { LoginComponent } from './login/login.component';
+import { MatSelectModule } from '@angular/material/select'
+import { MatFormFieldModule } from '@angular/material/form-field';
 
 @NgModule({
   declarations: [
@@ -37,7 +40,11 @@ import { LoginComponent } from './login/login.component';
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    MatSelectModule,
+    MatFormFieldModule,
+    BrowserAnimationsModule
+
   ],
   providers: [CustomerService],
   bootstrap: [AppComponent]

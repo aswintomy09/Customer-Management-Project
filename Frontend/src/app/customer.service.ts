@@ -27,4 +27,8 @@ export class CustomerService {
   deleteCustomer(id:number): Observable<Object>{
     return this.httpClient.delete(`${this.baseURL}/${id}`);
   }
+
+  getDownloadBill(id:number): any{
+    return this.httpClient.get(`${this.baseURL}/${id}/${"download"}`, {responseType: 'blob'});
+  }
 }
