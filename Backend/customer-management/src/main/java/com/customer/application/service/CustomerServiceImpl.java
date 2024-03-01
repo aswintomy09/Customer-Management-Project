@@ -14,6 +14,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 import static com.customer.application.constants.Constants.*;
@@ -46,6 +47,7 @@ public class CustomerServiceImpl implements CustomerService{
                     .map(orderModel -> Order.builder()
                             .item(orderModel.getItem())
                             .price(orderModel.getPrice())
+                            .quantity(orderModel.getQuantity())
                             .build())
                     .collect(Collectors.toList());
             Customer customer = Customer.builder()
@@ -53,10 +55,9 @@ public class CustomerServiceImpl implements CustomerService{
                     .lastname(customerModel.getLastname())
                     .address(customerModel.getAddress())
                     .city(customerModel.getCity())
-                    .state(customerModel.getState())
                     .orders(orderList)
                     .orderTotal(orderList.stream()
-                            .mapToInt(Order::getPrice)
+                            .mapToInt(order -> order.getPrice() * order.getQuantity())
                             .sum())
                     .build();
             orderList.forEach(order -> order.setCustomer(customer));
@@ -77,13 +78,13 @@ public class CustomerServiceImpl implements CustomerService{
         final String METHOD_NAME = this.getClass().getName() + " :: updateStock :: ";
         log.info(METHOD_NAME + "orders :: {} ", orders);
         try {
-            List<String> orderItems = orders.stream().map(Order::getItem)
-                    .collect(Collectors.toList());
+            Map<String, Integer> orderItems = orders.stream()
+                    .collect(Collectors.toMap(Order::getItem, Order::getQuantity));
             List<OrderList> orderList = orderListRepository.findAll();
             orderList.stream()
-                    .filter(list -> orderItems.contains(list.getItem()) && list.getStock() > 0)
+                    .filter(list -> orderItems.containsKey(list.getItem()) && list.getStock() > 0)
                     .forEach(list -> {
-                        list.setStock(list.getStock() - 1);
+                        list.setStock(list.getStock() - orderItems.get(list.getItem()));
                         orderListRepository.save(list);
                     });
         }catch (OrderException e){

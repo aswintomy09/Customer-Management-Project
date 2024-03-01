@@ -5,12 +5,15 @@ import com.customer.application.exception.OrderException;
 import com.customer.application.repository.OrderListRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 import static com.customer.application.constants.Constants.EXCEPTION_MESSAGE;
 import static com.customer.application.constants.Constants.INTERNAL_SERVER_GET_ERROR_MESSAGE;
+import static org.springframework.data.domain.Sort.Direction.ASC;
+import static org.springframework.data.domain.Sort.Direction.values;
 
 @Slf4j
 @Service
@@ -25,7 +28,7 @@ public class OrderServiceImpl implements OrderService{
         final String METHOD_NAME = this.getClass().getName() + " :: getOrderDropdownList :: ";
         log.info(METHOD_NAME);
         try {
-            return orderListRepository.findAll();
+            return orderListRepository.findInOrder();
         }catch (OrderException e){
             log.info(METHOD_NAME + EXCEPTION_MESSAGE, e.getMessage(), e);
             throw new OrderException(INTERNAL_SERVER_GET_ERROR_MESSAGE);

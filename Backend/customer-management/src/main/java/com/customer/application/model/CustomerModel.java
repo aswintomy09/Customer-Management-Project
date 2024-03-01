@@ -19,8 +19,6 @@ public class CustomerModel {
 
     private String city;
 
-    private String state;
-
     private List<Order> orders;
 
     private Integer orderTotal;

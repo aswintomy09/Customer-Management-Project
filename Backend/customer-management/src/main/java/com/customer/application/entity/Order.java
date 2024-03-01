@@ -25,6 +25,9 @@ public class Order {
     @Column(name = "Price")
     private Integer price;
 
+    @Column(name="Qty")
+    private Integer quantity;
+
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "customer_id")
     @JsonIgnore

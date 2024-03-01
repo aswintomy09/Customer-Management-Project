@@ -3,5 +3,5 @@ export class OrderList {
     item!: String;
     price!: number;
     stock!: number;
-
+    quantity!: Number;
 }

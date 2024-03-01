@@ -4,6 +4,7 @@ import { Customer } from '../customer';
 import { CustomerService } from '../customer.service';
 import { OrderList } from '../orderList';
 import { OrderService } from '../order.service';
+import { Order } from '../order';
 
 @Component({
   selector: 'app-add-new-customer',
@@ -34,6 +35,20 @@ export class AddNewCustomerComponent implements OnInit {
 
   goToCustomerList(){
     this.router.navigate(['/customers']);
+  }
+
+  set selectedOrders(val: Order[]) {
+    // initialize quantity to 1 for every selected order
+    val.forEach(order => {
+      if (!order.quantity) {
+        order.quantity = 1;
+      }
+    });
+    this.customer.orders = val;
+  }
+  
+  get selectedOrders() {
+    return this.customer.orders;
   }
 
 onSubmit(){

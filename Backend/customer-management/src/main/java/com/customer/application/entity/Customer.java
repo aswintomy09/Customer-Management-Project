@@ -31,9 +31,6 @@ public class Customer {
 	@Column(name="City")
 	private String city;
 	
-	@Column(name="State")
-	private String state;
-	
 	@OneToMany(mappedBy = "customer", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	private List<Order> orders;
 	

@@ -35,41 +35,25 @@
             [(ngModel)] = "customer.city" name="city">
     </div>
     <label>State</label>
-    <div class="col-md ">
-    <div class="form-group">
-        
-        <select class="form-select" id="state" [(ngModel)] = "customer.state" name="state">
-          <option selected>Andhra Pradesh</option>
-          <option value="Karnataka">Karnataka</option>
-          <option value="Kerala">Kerala</option>
-          <option value="Tamil Nadu">Tamil Nadu</option>
-          <option value="Maharashtra">Maharashtra</option>
-          <option value="Gujarat">Gujarat</option>
-          <option value="Punjab">Punjab</option>
-          <option value="Uttar Pradesh">Uttar Pradesh</option>
-          <option value="Rajasthan">Rajasthan</option>
-          <option value="West Bengal">West Bengal</option>
-        </select>
-    </div>   
-       
-    </div>
 
     <div class="form-group">
         <label>Orders</label>
     <mat-form-field appearance="fill">
         <mat-label>Orders</mat-label>
-        <mat-select [(value)]="customer.orders" multiple>
-            <mat-option *ngFor="let order of orders" [value]="order">{{ order.item }}, ₹{{ order.price }}, Stock: {{ order.stock }}</mat-option>
+        <mat-select [(value)]="selectedOrders" multiple>
+            <mat-option *ngFor="let order of orders" [value]="order">{{ order.item }}, ₹{{ order.price }}, Stock: {{ order.stock }}    
+            </mat-option>
         </mat-select>
     </mat-form-field>
     </div>
+    <div class="form-group" *ngFor="let order of selectedOrders">
+        <label>{{order.item}}</label>
+        <div>
+          Qty: 
+          <input type="number" min="1" [(ngModel)]="order.quantity" [name]="'orderQuantity' + order.id">
+        </div>
+      </div>
     
-    <!-- <div class="form-group">
-        <label>Orders</label>
-        <select class="form-select" id="orders" [(ngModel)]="customer.orders" name="orders" multiple>
-            <option *ngFor="let order of orders" [ngValue]="order">{{order.item}}, ₹{{order.price}}, Stock: {{order.stock}}</option>
-        </select>
-    </div> -->
     <br>
     <button class="btn btn-success" type="submit">Submit</button>&nbsp;&nbsp;&nbsp;&nbsp;
     <button class="btn btn-danger" type="submit" id="btn_cancel"><a routerLink="/ListView">Cancel</a></button>

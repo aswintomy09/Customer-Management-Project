@@ -14,4 +14,5 @@ public class Constants {
 
     // query constants
     public static final String GET_CUSTOMERS_WITH_ORDER_QUERY = "select distinct c from Customer c join fetch c.orders";
+    public static final String GET_ITEMS_WITH_ORDER_QUERY = "select o from OrderList o order by o.item asc";
 }
