@@ -83,15 +83,14 @@ public class PdfServiceImpl implements PdfService{
             document.add(titleTable);
 
             font.setColor(BLACK);
-            Paragraph customerDetails = new Paragraph("Customer Name: " + customer.getFirstname() + " " + customer.getLastname(), font);
-            customerDetails.setSpacingAfter(20);
+            Paragraph customerDetails = new Paragraph("Customer Name: " + customer.getFirstname() + " "
+                    + customer.getLastname(), font);
+            Paragraph customerAddress = new Paragraph("Address: " + customer.getAddress(), font);
             document.add(title);
             document.add(customerDetails);
+            document.add(customerAddress);
 
-
-
-            // Create a table
-            PdfPTable table = new PdfPTable(2); // Assuming Order has 3 fields
+            PdfPTable table = new PdfPTable(4);
             table.setWidthPercentage(80); // make the table 80% of the page width
             table.setSpacingBefore(20); // add a space before the table
             table.setSpacingAfter(20); // and after the table
@@ -107,7 +106,19 @@ public class PdfServiceImpl implements PdfService{
             table.addCell(cell);
 
             // Second Header
-            cell = new PdfPCell(new Phrase("Price", tableHeaderFont));
+            cell = new PdfPCell(new Phrase("Rate", tableHeaderFont));
+            cell.setBackgroundColor(BLUE);
+            cell.setHorizontalAlignment(Element.ALIGN_CENTER);
+            table.addCell(cell);
+
+            // Third Header
+            cell = new PdfPCell(new Phrase("Qty", tableHeaderFont));
+            cell.setBackgroundColor(BLUE);
+            cell.setHorizontalAlignment(Element.ALIGN_CENTER);
+            table.addCell(cell);
+
+            // Fourth Header
+            cell = new PdfPCell(new Phrase("Total price", tableHeaderFont));
             cell.setBackgroundColor(BLUE);
             cell.setHorizontalAlignment(Element.ALIGN_CENTER);
             table.addCell(cell);
@@ -115,10 +126,12 @@ public class PdfServiceImpl implements PdfService{
             // Adding rows for each Order
             for (Order order : customer.getOrders()) {
                 table.addCell(order.getItem());
-
                 cell = new PdfPCell(new Phrase(order.getPrice().toString(), font));
                 cell.setHorizontalAlignment(Element.ALIGN_CENTER);
                 table.addCell(cell);
+                table.addCell(String.valueOf(order.getQuantity()));
+                table.addCell(String.valueOf(order.getQuantity() * order.getPrice()));
+
             }
             document.add(table);
             document.add(new Paragraph("Total: " + customer.getOrderTotal()));
