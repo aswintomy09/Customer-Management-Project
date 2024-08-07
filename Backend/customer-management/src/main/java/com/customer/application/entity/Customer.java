@@ -31,11 +31,9 @@ public class Customer {
 	@Column(name="City")
 	private String city;
 	
-	@OneToMany(mappedBy = "customer", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	@OneToMany
+	@JoinColumn(name = "customerId", referencedColumnName = "id", insertable = false, updatable = false)
 	private List<Order> orders;
-	
-	@Column(name="OrderTotal")
-	private Integer orderTotal;
 
 }
 

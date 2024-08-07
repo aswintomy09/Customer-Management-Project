@@ -16,7 +16,7 @@ public class Order {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "Order_id")
+    @Column(name = "id")
     private Long id;
 
     @Column(name = "Item")
@@ -28,8 +28,14 @@ public class Order {
     @Column(name="Qty")
     private Integer quantity;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "customer_id")
-    @JsonIgnore
-    private Customer customer;
+    @Column(name="OrderTotal")
+    private Integer orderTotal;
+
+    @Column(name = "customerId")
+    private Integer customerId;
+
+//    @ManyToOne(fetch = FetchType.LAZY)
+//    @JoinColumn(name = "customerId", referencedColumnName = "id")
+//    @JsonIgnore
+//    private Customer customer;
 }

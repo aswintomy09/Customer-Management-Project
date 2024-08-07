@@ -4,7 +4,6 @@ import com.customer.application.entity.Customer;
 import com.customer.application.entity.Order;
 import com.customer.application.model.CustomerModel;
 import com.customer.application.service.CustomerService;
-
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.After;
 import org.junit.Before;
@@ -22,9 +21,9 @@ import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
 import java.util.Collections;
 
-import static com.customer.application.constants.Constants.URL;
+import static com.customer.application.constants.Constants.CUSTOMER_URL;
 import static org.junit.Assert.assertEquals;
-import static org.mockito.ArgumentMatchers.*;
+import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.lenient;
 
 public class CustomerControllerTest {
@@ -59,7 +58,7 @@ public class CustomerControllerTest {
         lenient().when(customerService.getAllCustomers()).
                 thenReturn(Collections.singletonList(this.getCustomerEntity()));
         RequestBuilder requestBuilder = MockMvcRequestBuilders
-                .get(URL + "/customer")
+                .get(CUSTOMER_URL + "/customer")
                 .accept(MediaType.APPLICATION_JSON)
                 .contentType(MediaType.APPLICATION_JSON);
         MvcResult mvcResult = this.mockMvc.perform(requestBuilder).andReturn();
@@ -73,7 +72,7 @@ public class CustomerControllerTest {
         lenient().when(customerService.createCustomer(this.getCustomerModel())).
                 thenReturn(this.getCustomerEntity());
         RequestBuilder requestBuilder = MockMvcRequestBuilders
-                .post(URL + "/customer")
+                .post(CUSTOMER_URL + "/customer")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(this.objectMapper.writeValueAsString(this.getCustomerEntity()));
         MvcResult mvcResult = this.mockMvc.perform(requestBuilder).andReturn();
@@ -87,7 +86,7 @@ public class CustomerControllerTest {
         lenient().when(customerService.deleteCustomer(any())).
                 thenReturn(this.getCustomerEntity());
         RequestBuilder requestBuilder = MockMvcRequestBuilders
-                .delete(URL + "/customer/" + ID)
+                .delete(CUSTOMER_URL + "/customer/" + ID)
                 .accept(MediaType.APPLICATION_JSON)
                 .contentType(MediaType.APPLICATION_JSON);
         MvcResult mvcResult = this.mockMvc.perform(requestBuilder).andReturn();
@@ -101,7 +100,7 @@ public class CustomerControllerTest {
         lenient().when(customerService.getCustomerById(any())).
                 thenReturn(this.getCustomerEntity());
         RequestBuilder requestBuilder = MockMvcRequestBuilders
-                .get(URL + "/customer/" + ID)
+                .get(CUSTOMER_URL + "/customer/" + ID)
                 .contentType(MediaType.APPLICATION_JSON);
         MvcResult mvcResult = this.mockMvc.perform(requestBuilder).andReturn();
         int actualResult = mvcResult.getResponse().getStatus();
@@ -115,10 +114,8 @@ public class CustomerControllerTest {
                 .firstname("Test first name")
                 .lastname("Test last name")
                 .city("Test city")
-                .state("State")
                 .address("Address")
                 .orders(Collections.singletonList(this.getOrder()))
-                .orderTotal(34)
                 .build();
     }
 
@@ -127,7 +124,6 @@ public class CustomerControllerTest {
                 .firstname("Test first name")
                 .lastname("Test last name")
                 .city("Test city")
-                .state("State")
                 .address("Address")
                 .orders(Collections.singletonList(this.getOrder()))
                 .orderTotal(34)

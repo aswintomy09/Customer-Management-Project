@@ -15,5 +15,4 @@ public interface CustomerService {
 
     Customer createCustomer(CustomerModel customer);
 
-    void updateStock(List<Order> orders);
 }

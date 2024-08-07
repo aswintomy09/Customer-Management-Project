@@ -32,7 +32,7 @@ public class CustomerServiceImpl implements CustomerService{
         final String METHOD_NAME = this.getClass().getName() + " :: getAllCustomers :: ";
         log.info(METHOD_NAME);
         try {
-            return customerRepository.findAllWithOrders();
+            return customerRepository.findAll();
         }catch (CustomerException e){
             log.info(METHOD_NAME + EXCEPTION_MESSAGE, e.getMessage(), e);
             throw new CustomerException(INTERNAL_SERVER_GET_ERROR_MESSAGE);
@@ -43,53 +43,19 @@ public class CustomerServiceImpl implements CustomerService{
         final String METHOD_NAME = this.getClass().getName() + " :: createCustomer :: ";
         log.info(METHOD_NAME + "customerModel :: {} ", customerModel);
         try {
-            List<Order> orderList = customerModel.getOrders().stream()
-                    .map(orderModel -> Order.builder()
-                            .item(orderModel.getItem())
-                            .price(orderModel.getPrice())
-                            .quantity(orderModel.getQuantity())
-                            .build())
-                    .collect(Collectors.toList());
             Customer customer = Customer.builder()
                     .firstname(customerModel.getFirstname())
                     .lastname(customerModel.getLastname())
                     .address(customerModel.getAddress())
                     .city(customerModel.getCity())
-                    .orders(orderList)
-                    .orderTotal(orderList.stream()
-                            .mapToInt(order -> order.getPrice() * order.getQuantity())
-                            .sum())
                     .build();
-            orderList.forEach(order -> order.setCustomer(customer));
             Customer savedCustomer = customerRepository.save(customer);
-            log.info(METHOD_NAME + "Updating the stock value");
-            this.updateStock(savedCustomer.getOrders());
             log.info(METHOD_NAME + "Customer entity saved and data received");
             return savedCustomer;
 
         }catch (CustomerException e){
             log.info(METHOD_NAME + EXCEPTION_MESSAGE, e.getMessage(), e);
             throw new CustomerException(INTERNAL_SERVER_SAVE_ERROR_MESSAGE);
-        }
-    }
-
-    @Override
-    public void updateStock(List<Order> orders) {
-        final String METHOD_NAME = this.getClass().getName() + " :: updateStock :: ";
-        log.info(METHOD_NAME + "orders :: {} ", orders);
-        try {
-            Map<String, Integer> orderItems = orders.stream()
-                    .collect(Collectors.toMap(Order::getItem, Order::getQuantity));
-            List<OrderList> orderList = orderListRepository.findAll();
-            orderList.stream()
-                    .filter(list -> orderItems.containsKey(list.getItem()) && list.getStock() > 0)
-                    .forEach(list -> {
-                        list.setStock(list.getStock() - orderItems.get(list.getItem()));
-                        orderListRepository.save(list);
-                    });
-        }catch (OrderException e){
-            log.info(METHOD_NAME + EXCEPTION_MESSAGE, e.getMessage(), e);
-            throw new OrderException(INTERNAL_SERVER_SAVE_ERROR_MESSAGE);
         }
     }
 

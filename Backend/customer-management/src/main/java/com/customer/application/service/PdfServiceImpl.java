@@ -134,7 +134,9 @@ public class PdfServiceImpl implements PdfService{
 
             }
             document.add(table);
-            document.add(new Paragraph("Total: " + customer.getOrderTotal()));
+            document.add(new Paragraph("Total: " + customer.getOrders().stream()
+                    .mapToInt(order -> order.getPrice() * order.getQuantity())
+                    .sum()));
 
         } catch (DocumentException | IOException e) {
             log.error("Error generating PDF", e);
