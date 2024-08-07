@@ -1,6 +1,5 @@
 package com.customer.application.entity;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 
 import javax.persistence.*;
@@ -25,10 +24,10 @@ public class Order {
     @Column(name = "Price")
     private Integer price;
 
-    @Column(name="Qty")
+    @Column(name = "Qty")
     private Integer quantity;
 
-    @Column(name="OrderTotal")
+    @Column(name = "OrderTotal")
     private Integer orderTotal;
 
     @Column(name = "customerId")
