@@ -9,6 +9,5 @@ export class Customer {
     city!: String;
     state!: String;
     orders!: Order[];
-    orderTotal!: number;
 
 }

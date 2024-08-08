@@ -33,8 +33,4 @@ public class Order {
     @Column(name = "customerId")
     private Integer customerId;
 
-//    @ManyToOne(fetch = FetchType.LAZY)
-//    @JoinColumn(name = "customerId", referencedColumnName = "id")
-//    @JsonIgnore
-//    private Customer customer;
 }

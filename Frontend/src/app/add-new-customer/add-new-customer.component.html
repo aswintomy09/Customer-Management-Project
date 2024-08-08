@@ -34,25 +34,6 @@
         <input type="text" class="form-control" id="city"
             [(ngModel)] = "customer.city" name="city">
     </div>
-    <label>State</label>
-
-    <div class="form-group">
-        <label>Orders</label>
-    <mat-form-field appearance="fill">
-        <mat-label>Orders</mat-label>
-        <mat-select [(value)]="selectedOrders" multiple>
-            <mat-option *ngFor="let order of orders" [value]="order">{{ order.item }}, ₹{{ order.price }}, Stock: {{ order.stock }}    
-            </mat-option>
-        </mat-select>
-    </mat-form-field>
-    </div>
-    <div class="form-group" *ngFor="let order of selectedOrders">
-        <label>{{order.item}}</label>
-        <div>
-          Qty: 
-          <input type="number" min="1" [(ngModel)]="order.quantity" [name]="'orderQuantity' + order.id">
-        </div>
-      </div>
     
     <br>
     <button class="btn btn-success" type="submit">Submit</button>&nbsp;&nbsp;&nbsp;&nbsp;

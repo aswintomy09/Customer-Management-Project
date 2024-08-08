@@ -37,19 +37,19 @@ export class AddNewCustomerComponent implements OnInit {
     this.router.navigate(['/customers']);
   }
 
-  set selectedOrders(val: Order[]) {
-    // initialize quantity to 1 for every selected order
-    val.forEach(order => {
-      if (!order.quantity) {
-        order.quantity = 1;
-      }
-    });
-    this.customer.orders = val;
-  }
+  // set selectedOrders(val: Order[]) {
+  //   // initialize quantity to 1 for every selected order
+  //   val.forEach(order => {
+  //     if (!order.quantity) {
+  //       order.quantity = 1;
+  //     }
+  //   });
+  //   this.customer.orders = val;
+  // }
   
-  get selectedOrders() {
-    return this.customer.orders;
-  }
+  // get selectedOrders() {
+  //   return this.customer.orders;
+  // }
 
 onSubmit(){
   console.log(this.customer);

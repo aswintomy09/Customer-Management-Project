@@ -20,6 +20,7 @@ import { AddNewCustomerComponent } from './add-new-customer/add-new-customer.com
 import { LoginComponent } from './login/login.component';
 import { MatSelectModule } from '@angular/material/select'
 import { MatFormFieldModule } from '@angular/material/form-field';
+import { AddOrderComponent } from './add-order/add-order.component';
 
 @NgModule({
   declarations: [
@@ -34,7 +35,8 @@ import { MatFormFieldModule } from '@angular/material/form-field';
     CustomerOrdersComponent,
     EditCustomerComponent,
     AddNewCustomerComponent,
-    LoginComponent
+    LoginComponent,
+    AddOrderComponent
   ],
   imports: [
     BrowserModule,

@@ -26,7 +26,7 @@ public class OrderController {
     @Autowired
     private OrderService orderService;
 
-    @GetMapping("/dropdown")
+    @GetMapping("/order/dropdown")
     public ResponseEntity<List<OrderList>> getOrderDropdownList(){
         final String METHOD_NAME = this.getClass().getName() + " :: getOrderDropdownList ::";
         log.info(METHOD_NAME + "calling getOrderDropdownList method ");

@@ -3,5 +3,6 @@ export class Order {
     item!: String;
     price!: Number;
     quantity!: Number;
-
+    orderTotal!:number;
+    customerId!:Number;
 }

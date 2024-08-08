@@ -26,6 +26,10 @@ export class CustomerOrdersComponent implements OnInit {
     });
   }
 
+  getTotalSum(): number {
+    return this.customer.orders.reduce((sum, order) => sum + order.orderTotal, 0);
+  }
+
   downloadPdf(customerId: number): void {
     this.customerService.getDownloadBill(customerId).subscribe((data: Blob) => {
       var downloadURL = window.URL.createObjectURL(data);

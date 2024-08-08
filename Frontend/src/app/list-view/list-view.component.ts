@@ -34,4 +34,10 @@ deleteCustomer(id:number){
     this.getCustomers();
   })
 }
+
+addOrder(id:number){
+  this.router.navigate(['AddOrder',id]);
+}
+
+
 }

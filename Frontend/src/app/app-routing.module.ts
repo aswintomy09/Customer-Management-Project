@@ -10,6 +10,7 @@ import { ListViewComponent } from './list-view/list-view.component';
 import { LoginComponent } from './login/login.component';
 import { MapViewComponent } from './map-view/map-view.component';
 import { OrdersComponent } from './orders/orders.component';
+import { AddOrderComponent } from './add-order/add-order.component';
 
 const routes: Routes = [
   {path:"Customers",component:CustomersComponent},
@@ -23,7 +24,8 @@ const routes: Routes = [
   {path:"back",component:MapViewComponent},
   {path:"Add-new-customer",component:AddNewCustomerComponent},
   {path:"Login",component:LoginComponent},
-  {path:"Cancel",component:ListViewComponent}
+  {path:"Cancel",component:ListViewComponent},
+  {path:"AddOrder/:id",component:AddOrderComponent}
 ];
 
 @NgModule({
