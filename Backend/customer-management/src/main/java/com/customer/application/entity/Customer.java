@@ -31,7 +31,7 @@ public class Customer {
 	@Column(name="City")
 	private String city;
 	
-	@OneToMany
+	@OneToMany(cascade = CascadeType.ALL)
 	@JoinColumn(name = "customerId", referencedColumnName = "id", insertable = false, updatable = false)
 	private List<Order> orders;
 
