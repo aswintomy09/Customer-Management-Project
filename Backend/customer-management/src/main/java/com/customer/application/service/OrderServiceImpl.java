@@ -52,7 +52,7 @@ public class OrderServiceImpl implements OrderService {
                             .orderTotal(orderModel.getPrice() * orderModel.getQuantity())
                             .customerId(orderModel.getCustomerId())
                             .build())
-                    .collect(Collectors.toList());
+                    .toList();
             orderList.forEach(order -> orderRepository.save(order));
             log.info(METHOD_NAME + "Updating the stock value");
             this.updateStock(orderList);

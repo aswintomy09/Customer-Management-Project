@@ -9,6 +9,7 @@ import com.customer.application.exception.ResourceNotFoundException;
 import com.customer.application.model.CustomerModel;
 import com.customer.application.repository.CustomerRepository;
 import com.customer.application.repository.OrderListRepository;
+import com.customer.application.repository.OrderRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -27,6 +28,8 @@ public class CustomerServiceImpl implements CustomerService{
     private CustomerRepository customerRepository;
     @Autowired
     private OrderListRepository orderListRepository;
+    @Autowired
+    private OrderRepository orderRepository;
 
     public List<Customer> getAllCustomers(){
         final String METHOD_NAME = this.getClass().getName() + " :: getAllCustomers :: ";
@@ -71,6 +74,8 @@ public class CustomerServiceImpl implements CustomerService{
         log.info(METHOD_NAME + "id :: {} ", id);
         Customer customer = customerRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException(CUSTOMER_DOES_NOT_EXIST + id));
+        List<Order> orders = customer.getOrders();
+        orders.forEach(order -> orderRepository.delete(order));
         customerRepository.delete(customer);
         return customer;
 
