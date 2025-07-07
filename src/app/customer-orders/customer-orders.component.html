@@ -1,0 +1,21 @@
+<head>
+  <style></style>
+</head>
+<h3>Customer Orders</h3>
+<div id="info">
+  <div>
+    <label><b>Name: </b></label> {{customer.firstname}} {{customer.lastname}}
+  </div>
+  
+  
+  <div>
+    <label><b>Orders: </b></label> <div *ngFor="let order of customer.orders"> {{order.item}} </div>
+  </div>
+
+  <div>
+    <label><b>OrderTotal:</b> ₹</label> {{getTotalSum()}}
+  </div>
+  <div>      
+    <button (click)="downloadPdf(customer.id)" class="btn btn-info " style="margin-left: 10px">Download Bill</button>
+  </div>
+</div>

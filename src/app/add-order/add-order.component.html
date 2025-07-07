@@ -1,0 +1,23 @@
+<br><br><h3>New customer</h3>
+<div class="col-md-4 offset-md-3">
+<form (ngSubmit)="onSubmitOrder()">
+<div class="form-group">
+    <label>Orders</label>
+<mat-form-field appearance="fill">
+    <mat-label>Orders</mat-label>
+    <mat-select [(value)]="selectedOrders" multiple>
+        <mat-option *ngFor="let order of orders" [value]="order">{{ order.item }}, ₹{{ order.price }}, Stock: {{ order.stock }}    
+        </mat-option>
+    </mat-select>
+</mat-form-field>
+</div>
+<div class="form-group" *ngFor="let order of selectedOrders">
+    <label>{{order.item}}</label>
+    <div>
+      Qty: 
+      <input type="number" min="1" [(ngModel)]="order.quantity" [name]="'orderQuantity' + order.id"> 
+    </div>
+  </div>
+  <br>
+    <button class="btn btn-success" type="submit">Submit</button>&nbsp;&nbsp;&nbsp;&nbsp;
+    <button class="btn btn-danger" type="submit" id="btn_cancel"><a routerLink="/ListView">Cancel</a></button>

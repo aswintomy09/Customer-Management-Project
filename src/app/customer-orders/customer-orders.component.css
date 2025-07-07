@@ -1,0 +1,20 @@
+th{
+    background-color: rgb(170, 168, 168);
+}
+a:hover{
+    background-color: antiquewhite;
+    color: black;
+}
+a:active{
+    font-style: bold;
+    background-color: antiquewhite
+}  
+a{
+    text-decoration: none;
+    font-size: 17px;
+    color: rgba(97, 95, 95, 0.829);
+}  
+#info{
+    background-color: white;
+}
+

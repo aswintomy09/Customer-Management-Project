@@ -1,0 +1,32 @@
+<p> <img src="assets/customer.jpg" width="40" height="40">Customer Information<br></p>
+
+<!--<a routerLink="/CustomerDetails">Customer Details &nbsp; &nbsp;</a>
+<a routerLink="/CustomerOrders">Customer Orders &nbsp; &nbsp;</a>-->
+<table class="table table-striped table-bordered w-auto">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th></th>
+        
+      </tr>
+    </thead>
+      <tbody>
+      <tr *ngFor="let customer of customers">
+        
+        <td *ngIf="customer.gender=='Male'">
+          <img src="assets/ted.jpg" width="50" height="50">
+        </td>
+        <td *ngIf="customer.gender=='Female'">
+          <img src="assets/enrita.png" width="50" height="50">
+        </td>
+        <td>{{customer.firstname}} {{customer.lastname}}</td>
+        <td>
+          
+          <button (click)="customerDetails(customer.id)" class="btn btn-info " style="margin-left: 10px">Map view</button>
+          
+        </td>
+      </tr>
+    </tbody>
+      
+      
+    </table>
