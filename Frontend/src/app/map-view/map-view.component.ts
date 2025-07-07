@@ -19,7 +19,10 @@ export class MapViewComponent implements OnInit {
   }
   private getCustomers(){
     this.customerService.getCustomerList().subscribe(data =>{
-      this.customers=data;
+      this.customers=data.map(c => ({
+      ...c,
+      gender: localStorage.getItem(`gender_${c.firstname}_${c.lastname}`) || ''
+    }));
     });
   }
   customerDetails(id:number){

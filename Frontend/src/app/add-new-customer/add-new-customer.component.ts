@@ -15,6 +15,7 @@ export class AddNewCustomerComponent implements OnInit {
 
   customer: Customer=new Customer();
   orders!: OrderList[];
+  selectedGender: string = '';
   constructor(private customerService: CustomerService,private orderService: OrderService,private router:Router) { }
 
   ngOnInit(): void {
@@ -24,6 +25,12 @@ export class AddNewCustomerComponent implements OnInit {
     
   }
   saveCustomer(){
+    this.customer.gender = this.selectedGender;
+  // Save gender in localStorage using a unique key (e.g., firstname+lastname)
+  localStorage.setItem(
+    `gender_${this.customer.firstname}_${this.customer.lastname}`,
+    this.selectedGender
+  );
     this.customerService.createCustomer(this.customer).subscribe(data =>{
       console.log(data);
       this.router.navigate(['/ListView']); 
@@ -37,19 +44,6 @@ export class AddNewCustomerComponent implements OnInit {
     this.router.navigate(['/customers']);
   }
 
-  // set selectedOrders(val: Order[]) {
-  //   // initialize quantity to 1 for every selected order
-  //   val.forEach(order => {
-  //     if (!order.quantity) {
-  //       order.quantity = 1;
-  //     }
-  //   });
-  //   this.customer.orders = val;
-  // }
-  
-  // get selectedOrders() {
-  //   return this.customer.orders;
-  // }
 
 onSubmit(){
   console.log(this.customer);

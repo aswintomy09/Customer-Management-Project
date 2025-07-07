@@ -21,12 +21,11 @@ Filter:<input type="text" id="filter">&nbsp;
     <tbody border="1">
     <tr *ngFor="let customer of customers">
       
+      <!-- <td>
+        <img src = "assets/ted.jpg" width="50" height="50"> -->
       <td>
-        <img src = "assets/ted.jpg" width="50" height="50">
+        <img [src]="customer.gender === 'Female' ? 'assets/enrita.png' : 'assets/ted.jpg'" width="50" height="50" alt="Customer Image">
       </td>
-      <!-- <td *ngIf="customer.gender==='Female'">
-        <img src="assets/enrita.png" width="50" height="50">
-      </td> -->
       <td>{{customer.firstname}}</td>
       <td>{{customer.lastname}}</td>
       <td>{{customer.address}}</td>
