@@ -15,9 +15,17 @@ p{
     font-size: 17px;
     color: rgba(97, 95, 95, 0.829);
 }
+
+
 table{
+     border: 1px solid black;
+    border-collapse: collapse;
     background-color: white;
     background-size:auto;
 }
 
-    
+th, td {
+    padding: 8px;
+    border: 1px solid black;
+    border-collapse: collapse;
+}    
